@@ -22,11 +22,11 @@ To run any of the scripts in this repository, you can follow these steps:
 1. Ensure you are using Ubuntu 18.04 LTS with Python 3.7 installed.
 2. **Clone the repository:**
    ```bash
-   git clone https://your-repository-link-here.git
+   git clone https://github.com/R-HYTE/alx-backend-python.git
    ```
 3. **Change directory to the project folder:**
    ```bash
-   cd path-to-your-project
+   cd 0x01-python_async_function
    ```
 4. **Make the python script executable:**
    ```bash
