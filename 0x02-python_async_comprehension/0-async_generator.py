@@ -7,9 +7,10 @@ with a 1-second pause between each yield.
 
 import asyncio
 import random
+from typing import Generator
 
 
-async def async_generator():
+async def async_generator() -> Generator[float, None, None]:
     """
     Asynchronously generates a sequence of random numbers
     between 0 and 10, with a 1-second pause between each number.
