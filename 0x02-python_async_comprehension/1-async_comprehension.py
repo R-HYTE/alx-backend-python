@@ -4,11 +4,12 @@ Module containing an asynchronous comprehension coroutine that collects
 random numbers yielded from an asynchronous generator.
 """
 
+from typing import List
 import asyncio
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension() -> list:
+async def async_comprehension() -> List[float]:
     """
     Asynchronously collects 10 random numbers using an async comprehension
     over an asynchronous generator, then returns the collected numbers.
