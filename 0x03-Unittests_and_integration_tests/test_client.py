@@ -41,8 +41,12 @@ class TestGithubOrgClient(unittest.TestCase):
         ("abc", {"login": "abc"}),
     ])
     @patch("client.get_json")
-    def test_org(self, org_name: str, expected_response: Dict,
-                  mock_get_json: MagicMock) -> None:
+    def test_org(
+        self,
+        org_name: str,
+        expected_response: Dict,
+        mock_get_json: MagicMock
+    ) -> None:
         """
         Test the `org` method of `GithubOrgClient`.
 
@@ -52,7 +56,8 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_get_json (MagicMock): The mocked `get_json` function.
 
         Asserts:
-            - The `get_json` function is called exactly once with the correct URL.
+            - The `get_json` function is called exactly once
+                with the correct URL.
             - The `org` method returns the expected organization data.
         """
         mock_get_json.return_value = expected_response
@@ -91,8 +96,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
         Asserts:
             - The `public_repos` method returns a list of repository names.
-            - The `_public_repos_url` property and `get_json` function are called
-              exactly once.
+            - The `_public_repos_url` property and `get_json` function
+                are called exactly once.
         """
         test_payload = {
             'repos_url': "https://api.github.com/users/google/repos",
@@ -135,7 +140,8 @@ class TestGithubOrgClient(unittest.TestCase):
                              license.
 
         Asserts:
-            - The `has_license` method returns whether the license key is present.
+            - The `has_license` method returns whether
+                the license key is present.
         """
         client = GithubOrgClient("google")
         self.assertEqual(client.has_license(repo, key), expected)
@@ -162,7 +168,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """
         Set up class-level fixtures before running the integration tests.
 
-        Sets up a mock for the `requests.get` function to simulate API responses.
+        Sets up a mock for `requests.get` function to simulate API responses.
         """
         route_payload = {
             'https://api.github.com/orgs/google': cls.org_payload,
@@ -182,8 +188,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         Test the `public_repos` method with integration data.
 
         Asserts:
-            - The `public_repos` method returns the correct list of repositories
-              based on the integration test data.
+            - The `public_repos` method returns the correct list
+              of repositories based on the integration test data.
         """
         client = GithubOrgClient("google")
         self.assertEqual(client.public_repos(), self.expected_repos)
@@ -194,7 +200,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         data.
 
         Asserts:
-            - The `public_repos` method correctly filters repositories by license.
+            - The `public_repos` method correctly filters
+              repositories by license.
         """
         client = GithubOrgClient("google")
         self.assertEqual(client.public_repos(license="apache-2.0"),
@@ -208,6 +215,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         Stops the mock patch for `requests.get`.
         """
         cls.get_patcher.stop()
+
 
 if __name__ == '__main__':
     unittest.main()
